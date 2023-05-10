@@ -3,7 +3,7 @@ package org.example;
 import org.testng.annotations.Test;
 
 public class TestSuit extends BaseTest {
-    HomePage homePage = new HomePage();
+    static HomePage homePage = new HomePage();
     RegisterPage registerPage = new RegisterPage();
     RegisterResultPage registerResultPage = new RegisterResultPage();
     CompareProductPage compareProductPage = new CompareProductPage();
@@ -14,6 +14,21 @@ public class TestSuit extends BaseTest {
     ShoppingCartResultPage shoppingCartResultPage = new ShoppingCartResultPage();
     VotePage votePage = new VotePage();
     VoteResultPage voteResultPage = new VoteResultPage();
+    NewReleaseNews newReleaseNews = new NewReleaseNews();
+    NewReleaseNewsResultPage newReleaseNewsResultPage = new NewReleaseNewsResultPage();
+    FaceBookPage faceBookPage = new FaceBookPage();
+    BuildYourOwnComputerPage buildYourOwnComputerPage = new BuildYourOwnComputerPage();
+    BuildYourOwnComputerResultPage buildYourOwnComputerResultPage = new BuildYourOwnComputerResultPage();
+    CheckOutAsGuest checkOutAsGuest = new CheckOutAsGuest();
+    OrderConfirmationPage orderConfirmationPage = new OrderConfirmationPage();
+
+
+
+    @Test
+    public void verifyUserShouldBeAbleToSearch(){
+        //click on search button
+        homePage.clickOnSearch();
+    }
 
     @Test
     public void verifyUserShouldBeAbleToRegistrationSuccessfully() {
@@ -71,5 +86,45 @@ public class TestSuit extends BaseTest {
         // registered voter result
         RegisteredUserVoteResultPage registeredUserVoteResultPage = new RegisteredUserVoteResultPage();
     }
+    @Test
+    public void verifyUserShouldBeAbleToSelectTheCurrency(){
+        // home page
+        homePage.currencySelector();
+    }
+    @Test
+    public static void verifyUserShouldBeAbleToSearchAProduct(){
+        //homepage
+        homePage.searchProduct();
+    }
+    @Test
+    public void verifyUserShouldBeBAleTOCommentOnNews(){
+        //News Comments
+        newReleaseNews.clickOnDetailsButton();
+        //News Comments Results
+        newReleaseNewsResultPage.verifyUserShouldBeABleTOAddCommentSuccessfully();
+
+    }
+    @Test
+    public void verifyUserShouldBeABleTOFollowOnFaceBOOk(){
+        homePage.clickOnFaceBookFollowButton();
+        faceBookPage.goToFaceBookPage();
+        homePage.mainPageWelcomeToOurStore();
+
+
+    }
+    @Test
+    public void verifyUserShouldBeAbleToBuildOwnComputer(){
+        buildYourOwnComputerPage.verifyUserShouldEnterAllDetailsOfBuildYourOwnComputer();
+        buildYourOwnComputerResultPage.checkOut();
+        buildYourOwnComputerResultPage.productInShoppingCart();
+        checkOutAsGuest.CheckOutAsGuestSuccessfully();
+        checkOutAsGuest.BillingAddress();
+        checkOutAsGuest.PaymentInformation();
+        orderConfirmationPage.verifyUserShouldBeSeeOrderConformationSuccessfully();
+
+    }
+
+
+
 }
 
